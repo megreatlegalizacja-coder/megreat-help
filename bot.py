@@ -396,6 +396,7 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
 
         context.user_data["lang"] = LANG_BUTTONS[text]
+        context.user_data["step"] = "ready"
 
         await update.message.reply_text(
             t(context, "start"),
