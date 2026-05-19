@@ -587,7 +587,9 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     💬 Повідомлення:
     {text}
     """
-
+            print(f"SENDING ADMIN MESSAGE TO: {ADMIN_CHAT_ID}")
+            print(admin_message)
+            
             await context.bot.send_message(
                 chat_id=ADMIN_CHAT_ID,
                 text=admin_message,
