@@ -25,8 +25,9 @@ LANG_BUTTONS = {
 TEXTS = {
     "ua": {
         "choose_lang": "Оберіть мову:",
-        "start": "Привіт 👋\nЯ допоможу підготувати оплату.",
-        "main": "ХОЧУ ОПЛАТИТИ ОПЛАТИ СКАРБОВІ",
+        "welcome": "Привіт 👋\nЯ віртуальний помічник MeGreat.\nОберіть, з чим Вам допомогти:",
+        "main": "ГОЛОВНЕ МЕНЮ",
+        "payments_button": "💳 Хочу оплатити оплату скарбову",
         "choose_voivodeship": "Оберіть воєводство:",
         "what_payment": "За що платимо?",
         "temporary": "Тимчасове перебування",
@@ -57,8 +58,9 @@ TEXTS = {
     },
     "pl": {
         "choose_lang": "Wybierz język:",
-        "start": "Cześć 👋\nPomogę przygotować dane do opłaty.",
-        "main": "CHCĘ OPŁACIĆ OPŁATĘ SKARBOWĄ",
+        "welcome": "Cześć 👋\nJestem wirtualnym asystentem MeGreat.\nWybierz, w czym mogę pomóc:",
+        "main": "MENU GŁÓWNE",
+        "payments_button": "💳 Chcę opłacić opłatę skarbową",
         "choose_voivodeship": "Wybierz województwo:",
         "what_payment": "Za co chcesz zapłacić?",
         "temporary": "Pobyt czasowy",
@@ -89,8 +91,9 @@ TEXTS = {
     },
     "en": {
         "choose_lang": "Choose language:",
-        "start": "Hello 👋\nI will help you prepare payment details.",
-        "main": "I WANT TO PAY OFFICIAL FEES",
+        "welcome": "Cześć 👋\nJestem wirtualnym asystentem MeGreat.\nWybierz, w czym mogę pomóc:",
+        "main": "MENU GŁÓWNE",
+        "payments_button": "💳 Chcę opłacić opłatę skarbową",
         "choose_voivodeship": "Choose the voivodeship:",
         "what_payment": "What are you paying for?",
         "temporary": "Temporary residence",
@@ -121,8 +124,9 @@ TEXTS = {
     },
     "es": {
         "choose_lang": "Elige el idioma:",
-        "start": "Hola 👋\nTe ayudaré a preparar los datos de pago.",
-        "main": "QUIERO PAGAR TASAS OFICIALES",
+        "welcome": "Hola 👋\nSoy el asistente virtual de MeGreat.\nElige cómo puedo ayudarte:",
+        "main": "MENÚ PRINCIPAL",
+        "payments_button": "💳 Quiero pagar una tasa oficial",
         "choose_voivodeship": "Elige el voivodato:",
         "what_payment": "¿Por qué quieres pagar?",
         "temporary": "Residencia temporal",
@@ -153,8 +157,9 @@ TEXTS = {
     },
     "ru": {
         "choose_lang": "Выберите язык:",
-        "start": "Привет 👋\nЯ помогу подготовить данные для оплаты.",
-        "main": "ХОЧУ ОПЛАТИТЬ ГЕРБОВЫЙ СБОР",
+        "welcome": "Привет 👋\nЯ виртуальный помощник MeGreat.\nВыберите, с чем Вам помочь:",
+        "main": "ГЛАВНОЕ МЕНЮ",
+        "payments_button": "💳 Хочу оплатить гербовый сбор",
         "choose_voivodeship": "Выберите воеводство:",
         "what_payment": "За что платим?",
         "temporary": "Временное пребывание",
@@ -396,11 +401,14 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
 
         context.user_data["lang"] = LANG_BUTTONS[text]
-        context.user_data["step"] = "ready"
+        context.user_data["step"] = "main_menu"
 
         await update.message.reply_text(
-            t(context, "start"),
-            reply_markup=ReplyKeyboardMarkup([[t(context, "main")]], resize_keyboard=True),
+            t(context, "welcome"),
+            reply_markup=ReplyKeyboardMarkup(
+                [[t(context, "payments_button")]],
+                resize_keyboard=True,
+            ),
         )
         return
 
