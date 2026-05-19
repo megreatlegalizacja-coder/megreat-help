@@ -642,6 +642,7 @@ def main():
         raise RuntimeError("BOT_TOKEN is missing")
     app = ApplicationBuilder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("chatid", chatid))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, message_handler))
     print("Bot works.")
     app.run_polling()
