@@ -379,7 +379,16 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["step"] = "main_menu"
     await update.message.reply_text(t(context, "welcome"), reply_markup=main_menu_keyboard(context))
 
+async def chatid(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    chat = update.effective_chat
 
+    print(f"CHAT_ID: {chat.id}")
+    print(f"CHAT_TYPE: {chat.type}")
+    print(f"CHAT_TITLE: {chat.title}")
+
+    await update.message.reply_text(
+        f"Chat ID:\n{chat.id}\n\nType:\n{chat.type}"
+    )
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.clear()
     context.user_data["step"] = "language"
