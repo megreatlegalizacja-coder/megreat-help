@@ -24,9 +24,7 @@ LANG_BUTTONS = {
 
 TEXTS = {
     "ua": {
-        "choose_lang": "Оберіть мову:",
         "welcome": "Привіт 👋\nЯ віртуальний помічник MeGreat.\nОберіть, з чим Вам допомогти:",
-        "main": "ГОЛОВНЕ МЕНЮ",
         "payments_button": "💳 Хочу оплатити оплату скарбову",
         "choose_voivodeship": "Оберіть воєводство:",
         "what_payment": "За що платимо?",
@@ -57,9 +55,7 @@ TEXTS = {
         "restart": "🔄 Почати спочатку",
     },
     "pl": {
-        "choose_lang": "Wybierz język:",
         "welcome": "Cześć 👋\nJestem wirtualnym asystentem MeGreat.\nWybierz, w czym mogę pomóc:",
-        "main": "MENU GŁÓWNE",
         "payments_button": "💳 Chcę opłacić opłatę skarbową",
         "choose_voivodeship": "Wybierz województwo:",
         "what_payment": "Za co chcesz zapłacić?",
@@ -90,9 +86,7 @@ TEXTS = {
         "restart": "🔄 Zacznij od początku",
     },
     "en": {
-        "choose_lang": "Choose language:",
         "welcome": "Hello 👋\nI am the MeGreat virtual assistant.\nChoose how I can help you:",
-        "main": "MAIN MENU",
         "payments_button": "💳 I want to pay an official fee",
         "choose_voivodeship": "Choose the voivodeship:",
         "what_payment": "What are you paying for?",
@@ -123,9 +117,7 @@ TEXTS = {
         "restart": "🔄 Start again",
     },
     "es": {
-        "choose_lang": "Elige el idioma:",
         "welcome": "Hola 👋\nSoy el asistente virtual de MeGreat.\nElige cómo puedo ayudarte:",
-        "main": "MENÚ PRINCIPAL",
         "payments_button": "💳 Quiero pagar una tasa oficial",
         "choose_voivodeship": "Elige el voivodato:",
         "what_payment": "¿Por qué quieres pagar?",
@@ -156,9 +148,7 @@ TEXTS = {
         "restart": "🔄 Empezar de nuevo",
     },
     "ru": {
-        "choose_lang": "Выберите язык:",
         "welcome": "Привет 👋\nЯ виртуальный помощник MeGreat.\nВыберите, с чем Вам помочь:",
-        "main": "ГЛАВНОЕ МЕНЮ",
         "payments_button": "💳 Хочу оплатить гербовый сбор",
         "choose_voivodeship": "Выберите воеводство:",
         "what_payment": "За что платим?",
@@ -190,69 +180,86 @@ TEXTS = {
     },
 }
 
+CUKR_TEXTS = {
+    "ua": {
+        "main_button": "🇺🇦 Карта CUKR",
+        "menu_title": "Оберіть розділ про Карту CUKR:",
+        "about": "ℹ️ Про CUKR",
+        "instruction": "📘 Інструкція",
+        "back": "🔙 Назад у меню",
+        "about_text": "Карта CUKR — це спеціальна карта побиту для громадян України, які користуються тимчасовим захистом у Польщі.\n\nУ цьому розділі буде коротке пояснення: хто може подати заяву, коли це можливо і що потрібно підготувати.",
+        "instruction_text": "📘 Детальна інструкція буде доступна після оплати.\n\nТут буде приховане посилання на платного бота або сторінку оплати.",
+    },
+    "pl": {
+        "main_button": "🇺🇦 Karta CUKR",
+        "menu_title": "Wybierz sekcję dotyczącą Karty CUKR:",
+        "about": "ℹ️ O CUKR",
+        "instruction": "📘 Instrukcja",
+        "back": "🔙 Powrót do menu",
+        "about_text": "Karta CUKR to specjalna karta pobytu dla obywateli Ukrainy korzystających z ochrony czasowej w Polsce.\n\nW tej sekcji będzie krótkie wyjaśnienie: kto może złożyć wniosek, kiedy jest to możliwe i co trzeba przygotować.",
+        "instruction_text": "📘 Szczegółowa instrukcja będzie dostępna po dokonaniu opłaty.\n\nTutaj będzie ukryty link do płatnego bota albo strony płatności.",
+    },
+}
+
+RESULT_TEXTS = {
+    "ua": {
+        "ready": "✅ Дані для оплати готові", "instruction": "Оберіть у своєму банку звичайний переказ на рахунок.",
+        "recipient": "📌 У полі «ОТРИМУВАЧ» / «ODBIORCA» встав:", "account": "📌 У полі «НОМЕР РАХУНКУ» / «NUMER RACHUNKU» встав:",
+        "amount": "📌 У полі «СУМА ОПЛАТИ» / «KWOTA» встав:", "title": "📌 У полі «ПРИЗНАЧЕННЯ ПЛАТЕЖУ» / «TYTUŁ PRZELEWU» встав:",
+        "details": "Деталі справи:", "voivodeship": "Воєводство:", "office": "Ужонд:", "payment_type": "Тип оплати:",
+        "verification_status": "Статус перевірки:", "source": "Джерело:", "warning": "⚠️ Перед оплатою перевірте реквізити на офіційній сторінці ужонду.",
+        "free_ready": "✅ Оплата не потрібна", "free_instruction": "Ця дія є безкоштовною.\nНе виконуйте переказ.\nРеквізити для оплати не потрібні.",
+        "route_not_found": "⚠️ У Google Sheets немає маршруту оплати.", "account_not_found": "⚠️ Не знайдено рахунок у вкладці accounts.",
+    },
+    "pl": {
+        "ready": "✅ Dane do opłaty są gotowe", "instruction": "W banku wybierz zwykły przelew na rachunek.",
+        "recipient": "📌 W polu «ODBIORCA» wpisz:", "account": "📌 W polu «NUMER RACHUNKU» wpisz:",
+        "amount": "📌 W polu «KWOTA» wpisz:", "title": "📌 W polu «TYTUŁ PRZELEWU» wpisz:",
+        "details": "Szczegóły sprawy:", "voivodeship": "Województwo:", "office": "Urząd:", "payment_type": "Rodzaj opłaty:",
+        "verification_status": "Status weryfikacji:", "source": "Źródło:", "warning": "⚠️ Przed wykonaniem przelewu sprawdź dane na oficjalnej stronie urzędu.",
+        "free_ready": "✅ Opłata nie jest wymagana", "free_instruction": "Ta czynność jest bezpłatna.\nNie wykonuj przelewu.\nDane do opłaty nie są potrzebne.",
+        "route_not_found": "⚠️ W Google Sheets nie ma trasy płatności.", "account_not_found": "⚠️ Nie znaleziono rachunku w zakładce accounts.",
+    },
+    "en": {
+        "ready": "✅ Payment details are ready", "instruction": "In your bank, choose a standard bank transfer.",
+        "recipient": "📌 In the «RECIPIENT / ODBIORCA» field enter:", "account": "📌 In the «ACCOUNT NUMBER / NUMER RACHUNKU» field enter:",
+        "amount": "📌 In the «AMOUNT / KWOTA» field enter:", "title": "📌 In the «TRANSFER TITLE / TYTUŁ PRZELEWU» field enter:",
+        "details": "Case details:", "voivodeship": "Voivodeship:", "office": "Office:", "payment_type": "Payment type:",
+        "verification_status": "Verification status:", "source": "Source:", "warning": "⚠️ Before paying, verify the details on the official office website.",
+        "free_ready": "✅ No payment required", "free_instruction": "This procedure is free of charge.\nDo not make a transfer.\nPayment details are not required.",
+        "route_not_found": "⚠️ Google Sheets: payment route not found.", "account_not_found": "⚠️ Google Sheets: account not found in the accounts sheet.",
+    },
+    "es": {
+        "ready": "✅ Los datos de pago están listos", "instruction": "En tu banco, elige una transferencia bancaria normal.",
+        "recipient": "📌 En el campo «DESTINATARIO / ODBIORCA» introduce:", "account": "📌 En el campo «NÚMERO DE CUENTA / NUMER RACHUNKU» introduce:",
+        "amount": "📌 En el campo «IMPORTE / KWOTA» introduce:", "title": "📌 En el campo «CONCEPTO / TYTUŁ PRZELEWU» introduce:",
+        "details": "Detalles del trámite:", "voivodeship": "Voivodato:", "office": "Oficina:", "payment_type": "Tipo de pago:",
+        "verification_status": "Estado de verificación:", "source": "Fuente:", "warning": "⚠️ Antes de pagar, verifica los datos en la página oficial de la oficina.",
+        "free_ready": "✅ No se requiere pago", "free_instruction": "Este trámite es gratuito.\nNo hagas la transferencia.\nNo se necesitan datos de pago.",
+        "route_not_found": "⚠️ Google Sheets: no se encontró la ruta de pago.", "account_not_found": "⚠️ Google Sheets: no se encontró la cuenta en la hoja accounts.",
+    },
+    "ru": {
+        "ready": "✅ Данные для оплаты готовы", "instruction": "В банке выберите обычный банковский перевод.",
+        "recipient": "📌 В поле «ПОЛУЧАТЕЛЬ / ODBIORCA» вставьте:", "account": "📌 В поле «НОМЕР СЧЁТА / NUMER RACHUNKU» вставьте:",
+        "amount": "📌 В поле «СУММА / KWOTA» вставьте:", "title": "📌 В поле «НАЗНАЧЕНИЕ ПЛАТЕЖА / TYTUŁ PRZELEWU» вставьте:",
+        "details": "Детали дела:", "voivodeship": "Воеводство:", "office": "Ужонд:", "payment_type": "Тип оплаты:",
+        "verification_status": "Статус проверки:", "source": "Источник:", "warning": "⚠️ Перед оплатой проверьте реквизиты на официальной странице ужонда.",
+        "free_ready": "✅ Оплата не требуется", "free_instruction": "Это действие бесплатно.\nНе выполняйте перевод.\nРеквизиты для оплаты не нужны.",
+        "route_not_found": "⚠️ Google Sheets: маршрут оплаты не найден.", "account_not_found": "⚠️ Google Sheets: счёт не найден во вкладке accounts.",
+    },
+}
+
 FINAL_PAYMENTS = {
-    "yes_work": {
-        "payment_type_id": "pobyt_praca",
-        "label": "Pobyt czasowy i praca",
-        "amount": 440,
-        "title": "Opłata skarbowa za zezwolenie na pobyt czasowy i pracę dla {full_name}, ur. {birth_date}",
-    },
-    "no_work": {
-        "payment_type_id": "pobyt_czasowy",
-        "label": "Pobyt czasowy",
-        "amount": 340,
-        "title": "Opłata skarbowa za zezwolenie na pobyt czasowy dla {full_name}, ur. {birth_date}",
-    },
-    "karta_polaka": {
-        "payment_type_id": "pobyt_staly_karta_polaka",
-        "label": "Pobyt stały na podstawie Karty Polaka",
-        "amount": 0,
-        "free": True,
-        "title": "",
-    },
-    "no_karta_polaka": {
-        "payment_type_id": "pobyt_staly",
-        "label": "Pobyt stały",
-        "amount": 640,
-        "title": "Opłata skarbowa za zezwolenie na pobyt stały dla {full_name}, ur. {birth_date}",
-    },
-    "resident": {
-        "payment_type_id": "rezydent_ue",
-        "label": "Rezydent długoterminowy UE",
-        "amount": 640,
-        "title": "Opłata skarbowa za zezwolenie na pobyt rezydenta długoterminowego UE dla {full_name}, ur. {birth_date}",
-    },
-    "citizenship": {
-        "payment_type_id": "obywatelstwo",
-        "label": "Uznanie za obywatela polskiego",
-        "amount": 1000,
-        "title": "Opłata za wniosek o uznanie za obywatela polskiego dla {full_name}, ur. {birth_date}",
-    },
-    "cukr": {
-        "payment_type_id": "karta_cukr",
-        "label": "Karta CUKR",
-        "amount": 100,
-        "title": "Opłata za wydanie karty pobytu CUKR dla {full_name}, ur. {birth_date}",
-    },
-    "adult_no_discount": {
-        "payment_type_id": "karta_100",
-        "label": "Karta pobytu tradycyjna 100%",
-        "amount": 100,
-        "title": "Opłata za wydanie karty pobytu dla {full_name}, ur. {birth_date}",
-    },
-    "discount": {
-        "payment_type_id": "karta_50",
-        "label": "Karta pobytu tradycyjna 50%",
-        "amount": 50,
-        "title": "Opłata za wydanie karty pobytu - ulga 50% dla {full_name}, ur. {birth_date}",
-    },
-    "proxy": {
-        "payment_type_id": "pelnomocnictwo",
-        "label": "Pełnomocnictwo",
-        "amount": 17,
-        "needs_proxy": True,
-        "title": "Opłata skarbowa od pełnomocnictwa: {proxy_name}, sprawa osoby: {full_name}, ur. {birth_date}",
-    },
+    "yes_work": {"payment_type_id": "pobyt_praca", "label": "Pobyt czasowy i praca", "amount": 440, "title": "Opłata skarbowa za zezwolenie na pobyt czasowy i pracę dla {full_name}, ur. {birth_date}"},
+    "no_work": {"payment_type_id": "pobyt_czasowy", "label": "Pobyt czasowy", "amount": 340, "title": "Opłata skarbowa za zezwolenie na pobyt czasowy dla {full_name}, ur. {birth_date}"},
+    "karta_polaka": {"payment_type_id": "pobyt_staly_karta_polaka", "label": "Pobyt stały na podstawie Karty Polaka", "amount": 0, "free": True, "title": ""},
+    "no_karta_polaka": {"payment_type_id": "pobyt_staly", "label": "Pobyt stały", "amount": 640, "title": "Opłata skarbowa za zezwolenie na pobyt stały dla {full_name}, ur. {birth_date}"},
+    "resident": {"payment_type_id": "rezydent_ue", "label": "Rezydent długoterminowy UE", "amount": 640, "title": "Opłata skarbowa za zezwolenie na pobyt rezydenta długoterminowego UE dla {full_name}, ur. {birth_date}"},
+    "citizenship": {"payment_type_id": "obywatelstwo", "label": "Uznanie za obywatela polskiego", "amount": 1000, "title": "Opłata za wniosek o uznanie za obywatela polskiego dla {full_name}, ur. {birth_date}"},
+    "cukr": {"payment_type_id": "karta_cukr", "label": "Karta CUKR", "amount": 100, "title": "Opłata za wydanie karty pobytu CUKR dla {full_name}, ur. {birth_date}"},
+    "adult_no_discount": {"payment_type_id": "karta_100", "label": "Karta pobytu tradycyjna 100%", "amount": 100, "title": "Opłata za wydanie karty pobytu dla {full_name}, ur. {birth_date}"},
+    "discount": {"payment_type_id": "karta_50", "label": "Karta pobytu tradycyjna 50%", "amount": 50, "title": "Opłata za wydanie karty pobytu - ulga 50% dla {full_name}, ur. {birth_date}"},
+    "proxy": {"payment_type_id": "pelnomocnictwo", "label": "Pełnomocnictwo", "amount": 17, "needs_proxy": True, "title": "Opłata skarbowa od pełnomocnictwa: {proxy_name}, sprawa osoby: {full_name}, ur. {birth_date}"},
 }
 
 
@@ -264,6 +271,18 @@ def t(context, key):
     return TEXTS.get(lang(context), TEXTS["ua"]).get(key, key)
 
 
+def cukr_lang(context):
+    return "ua" if lang(context) in ["ua", "ru"] else "pl"
+
+
+def ct(context, key):
+    return CUKR_TEXTS[cukr_lang(context)].get(key, key)
+
+
+def rt(lang_code, key):
+    return RESULT_TEXTS.get(lang_code, RESULT_TEXTS["ua"]).get(key, key)
+
+
 def sheet_export_url(url):
     match = re.search(r"/d/([^/]+)", url or "")
     if match:
@@ -272,57 +291,49 @@ def sheet_export_url(url):
 
 
 def load_database():
+    if not SHEET_URL:
+        raise RuntimeError("SHEET_URL is missing")
     response = requests.get(sheet_export_url(SHEET_URL), timeout=30)
     response.raise_for_status()
     xlsx = BytesIO(response.content)
-
     voivodeships = pd.read_excel(xlsx, sheet_name="voivodeships").fillna("")
     xlsx.seek(0)
     accounts = pd.read_excel(xlsx, sheet_name="accounts").fillna("")
     xlsx.seek(0)
     routes = pd.read_excel(xlsx, sheet_name="payment_routes").fillna("")
-
-    return {
-        "voivodeships": voivodeships,
-        "accounts": accounts,
-        "routes": routes,
-    }
+    return {"voivodeships": voivodeships, "accounts": accounts, "routes": routes}
 
 
 DB = load_database()
 
 
 def make_keyboard(items, row_size=2):
-    rows = []
-    row = []
-
+    rows, row = [], []
     for item in items:
         row.append(str(item))
         if len(row) == row_size:
             rows.append(row)
             row = []
-
     if row:
         rows.append(row)
-
     return ReplyKeyboardMarkup(rows, resize_keyboard=True)
 
 
 def keyboard_with_restart(context, items, row_size=2):
-    rows = []
-    row = []
-
+    rows, row = [], []
     for item in items:
         row.append(str(item))
         if len(row) == row_size:
             rows.append(row)
             row = []
-
     if row:
         rows.append(row)
-
     rows.append([t(context, "restart")])
     return ReplyKeyboardMarkup(rows, resize_keyboard=True)
+
+
+def main_menu_keyboard(context):
+    return ReplyKeyboardMarkup([[t(context, "payments_button")], [ct(context, "main_button")]], resize_keyboard=True)
 
 
 def is_latin_name(name):
@@ -333,15 +344,7 @@ def validate_birth_date(date_text):
     try:
         birth = datetime.strptime(date_text, "%d.%m.%Y")
         today = datetime.today()
-
-        if birth > today:
-            return False
-
-        age = today.year - birth.year
-        if age > 120:
-            return False
-
-        return True
+        return birth <= today and (today.year - birth.year) <= 120
     except ValueError:
         return False
 
@@ -349,29 +352,21 @@ def validate_birth_date(date_text):
 def get_voivodeship(name):
     db = load_database()
     rows = db["voivodeships"][db["voivodeships"]["name_pl"].astype(str).str.strip() == name.strip()]
-    if rows.empty:
-        return None
-    return rows.iloc[0].to_dict()
+    return None if rows.empty else rows.iloc[0].to_dict()
 
 
 def get_route(voivodeship_id, payment_type_id):
     db = load_database()
     routes = db["routes"]
-    rows = routes[
-        (routes["voivodeship_id"].astype(str).str.strip() == str(voivodeship_id).strip())
-        & (routes["payment_type_id"].astype(str).str.strip() == str(payment_type_id).strip())
-    ]
-    if rows.empty:
-        return None
-    return rows.iloc[0].to_dict()
+    rows = routes[(routes["voivodeship_id"].astype(str).str.strip() == str(voivodeship_id).strip()) & (routes["payment_type_id"].astype(str).str.strip() == str(payment_type_id).strip())]
+    return None if rows.empty else rows.iloc[0].to_dict()
 
 
 def get_account(account_id):
     db = load_database()
     rows = db["accounts"][db["accounts"]["account_id"].astype(str).str.strip() == str(account_id).strip()]
-    if rows.empty:
-        return None
-    return rows.iloc[0].to_dict()
+    return None if rows.empty else rows.iloc[0].to_dict()
+
 
 def key_for_text(context, text, keys):
     for key in keys:
@@ -380,14 +375,15 @@ def key_for_text(context, text, keys):
     return None
 
 
+async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data["step"] = "main_menu"
+    await update.message.reply_text(t(context, "welcome"), reply_markup=main_menu_keyboard(context))
+
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.clear()
     context.user_data["step"] = "language"
-
-    await update.message.reply_text(
-        "Оберіть мову / Wybierz język / Choose language:",
-        reply_markup=make_keyboard(list(LANG_BUTTONS.keys()), 1),
-    )
+    await update.message.reply_text("Оберіть мову / Wybierz język / Choose language:", reply_markup=make_keyboard(list(LANG_BUTTONS.keys()), 1))
 
 
 async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -401,99 +397,70 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if text not in LANG_BUTTONS:
             await update.message.reply_text("Оберіть мову з кнопок.")
             return
-
         context.user_data["lang"] = LANG_BUTTONS[text]
-        context.user_data["step"] = "main_menu"
+        return await show_main_menu(update, context)
 
-        await update.message.reply_text(
-            t(context, "welcome"),
-            reply_markup=ReplyKeyboardMarkup(
-                [[t(context, "payments_button")]],
-                resize_keyboard=True,
-            ),
-        )
+    if text == ct(context, "back"):
+        return await show_main_menu(update, context)
+
+    if text == ct(context, "main_button"):
+        context.user_data["step"] = "cukr_menu"
+        await update.message.reply_text(ct(context, "menu_title"), reply_markup=ReplyKeyboardMarkup([[ct(context, "about")], [ct(context, "instruction")], [ct(context, "back")]], resize_keyboard=True))
+        return
+
+    if step == "cukr_menu":
+        if text == ct(context, "about"):
+            await update.message.reply_text(ct(context, "about_text"))
+            return
+        if text == ct(context, "instruction"):
+            await update.message.reply_text(ct(context, "instruction_text"))
+            return
+        await update.message.reply_text(t(context, "choose_button"))
         return
 
     if text == t(context, "payments_button"):
         context.user_data["step"] = "voivodeship"
         names = DB["voivodeships"]["name_pl"].astype(str).tolist()
-
-        await update.message.reply_text(
-            t(context, "choose_voivodeship"),
-            reply_markup=keyboard_with_restart(context, names, 2),
-        )
+        await update.message.reply_text(t(context, "choose_voivodeship"), reply_markup=keyboard_with_restart(context, names, 2))
         return
 
     if step == "voivodeship":
         voivodeship = get_voivodeship(text)
-
         if not voivodeship:
             await update.message.reply_text(t(context, "choose_button"))
             return
-
         context.user_data["voivodeship"] = voivodeship
         context.user_data["step"] = "main_payment_category"
-
-        await update.message.reply_text(
-            t(context, "what_payment"),
-            reply_markup=keyboard_with_restart(
-                context,
-                [
-                    t(context, "temporary"),
-                    t(context, "permanent"),
-                    t(context, "resident"),
-                    t(context, "citizenship"),
-                    t(context, "card_print"),
-                    t(context, "proxy"),
-                ],
-                1,
-            ),
-        )
+        await update.message.reply_text(t(context, "what_payment"), reply_markup=keyboard_with_restart(context, [t(context, "temporary"), t(context, "permanent"), t(context, "resident"), t(context, "citizenship"), t(context, "card_print"), t(context, "proxy")], 1))
         return
 
     if step == "main_payment_category":
         category = key_for_text(context, text, ["temporary", "permanent", "resident", "citizenship", "card_print", "proxy"])
-
         if category == "temporary":
             context.user_data["step"] = "temporary_work"
-            await update.message.reply_text(
-                t(context, "work_question"),
-                reply_markup=keyboard_with_restart(context, [t(context, "yes_work"), t(context, "no_work")], 1),
-            )
+            await update.message.reply_text(t(context, "work_question"), reply_markup=keyboard_with_restart(context, [t(context, "yes_work"), t(context, "no_work")], 1))
             return
-
         if category == "permanent":
             context.user_data["step"] = "permanent_basis"
-            await update.message.reply_text(
-                t(context, "basis_question"),
-                reply_markup=keyboard_with_restart(context, [t(context, "karta_polaka"), t(context, "no_karta_polaka")], 1),
-            )
+            await update.message.reply_text(t(context, "basis_question"), reply_markup=keyboard_with_restart(context, [t(context, "karta_polaka"), t(context, "no_karta_polaka")], 1))
             return
-
         if category == "card_print":
             context.user_data["step"] = "card_type"
-            await update.message.reply_text(
-                t(context, "card_type"),
-                reply_markup=keyboard_with_restart(context, [t(context, "cukr"), t(context, "traditional_card")], 1),
-            )
+            await update.message.reply_text(t(context, "card_type"), reply_markup=keyboard_with_restart(context, [t(context, "cukr"), t(context, "traditional_card")], 1))
             return
-
         if category in ["resident", "citizenship", "proxy"]:
             context.user_data["selected_payment"] = FINAL_PAYMENTS[category]
             context.user_data["step"] = "full_name"
             await update.message.reply_text(t(context, "enter_name"))
             return
-
         await update.message.reply_text(t(context, "choose_button"))
         return
 
     if step == "temporary_work":
         selected_key = key_for_text(context, text, ["yes_work", "no_work"])
-
         if not selected_key:
             await update.message.reply_text(t(context, "choose_button"))
             return
-
         context.user_data["selected_payment"] = FINAL_PAYMENTS[selected_key]
         context.user_data["step"] = "full_name"
         await update.message.reply_text(t(context, "enter_name"))
@@ -501,50 +468,38 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if step == "permanent_basis":
         selected_key = key_for_text(context, text, ["karta_polaka", "no_karta_polaka"])
-
         if not selected_key:
             await update.message.reply_text(t(context, "choose_button"))
             return
-
         context.user_data["selected_payment"] = FINAL_PAYMENTS[selected_key]
-
         if FINAL_PAYMENTS[selected_key].get("free"):
             result = build_result(context.user_data)
             context.user_data.clear()
             await update.message.reply_text(result)
             return
-
         context.user_data["step"] = "full_name"
         await update.message.reply_text(t(context, "enter_name"))
         return
 
     if step == "card_type":
         selected_key = key_for_text(context, text, ["cukr", "traditional_card"])
-
         if selected_key == "cukr":
             context.user_data["selected_payment"] = FINAL_PAYMENTS["cukr"]
             context.user_data["step"] = "full_name"
             await update.message.reply_text(t(context, "enter_name"))
             return
-
         if selected_key == "traditional_card":
             context.user_data["step"] = "traditional_card_discount"
-            await update.message.reply_text(
-                t(context, "discount_question"),
-                reply_markup=keyboard_with_restart(context, [t(context, "adult_no_discount"), t(context, "discount")], 1),
-            )
+            await update.message.reply_text(t(context, "discount_question"), reply_markup=keyboard_with_restart(context, [t(context, "adult_no_discount"), t(context, "discount")], 1))
             return
-
         await update.message.reply_text(t(context, "choose_button"))
         return
 
     if step == "traditional_card_discount":
         selected_key = key_for_text(context, text, ["adult_no_discount", "discount"])
-
         if not selected_key:
             await update.message.reply_text(t(context, "choose_button"))
             return
-
         context.user_data["selected_payment"] = FINAL_PAYMENTS[selected_key]
         context.user_data["step"] = "full_name"
         await update.message.reply_text(t(context, "enter_name"))
@@ -554,10 +509,8 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if not is_latin_name(text):
             await update.message.reply_text(t(context, "invalid_name"))
             return
-
         context.user_data["full_name"] = text.upper()
         context.user_data["step"] = "birth_date"
-
         await update.message.reply_text(t(context, "enter_birth"))
         return
 
@@ -565,15 +518,12 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if not validate_birth_date(text):
             await update.message.reply_text(t(context, "invalid_date"))
             return
-
         context.user_data["birth_date"] = text
         selected = context.user_data["selected_payment"]
-
         if selected.get("needs_proxy"):
             context.user_data["step"] = "proxy_name"
             await update.message.reply_text(t(context, "enter_proxy"))
             return
-
         result = build_result(context.user_data)
         context.user_data.clear()
         await update.message.reply_text(result)
@@ -583,9 +533,7 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if not is_latin_name(text):
             await update.message.reply_text(t(context, "invalid_name"))
             return
-
         context.user_data["proxy_name"] = text.upper()
-
         result = build_result(context.user_data)
         context.user_data.clear()
         await update.message.reply_text(result)
@@ -593,96 +541,7 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text("/start")
 
-def result_text(lang_code, key):
-    texts = {
-        "ua": {
-            "ready": "✅ Дані для оплати готові",
-            "instruction": "Оберіть у своєму банку звичайний переказ на рахунок.",
-            "recipient": "📌 У полі «ОТРИМУВАЧ» / «ODBIORCA» встав:",
-            "account": "📌 У полі «НОМЕР РАХУНКУ» / «NUMER RACHUNKU» встав:",
-            "amount": "📌 У полі «СУМА ОПЛАТИ» / «KWOTA» встав:",
-            "title": "📌 У полі «ПРИЗНАЧЕННЯ ПЛАТЕЖУ» / «TYTUŁ PRZELEWU» встав:",
-            "details": "Деталі справи:",
-            "voivodeship": "Воєводство:",
-            "office": "Ужонд:",
-            "payment_type": "Тип оплати:",
-            "warning": "⚠️ Перед оплатою перевірте реквізити на офіційній сторінці ужонду.",
-            "verification_status": "Статус перевірки:",
-            "source": "Джерело:",
-            "free_ready": "✅ Оплата не потрібна",
-            "free_instruction": "Ця дія є безкоштовною.\nНе виконуйте переказ.\nРеквізити для оплати не потрібні.",
-        },
-        "pl": {
-            "ready": "✅ Dane do opłaty są gotowe",
-            "instruction": "W banku wybierz zwykły przelew na rachunek.",
-            "recipient": "📌 W polu «ODBIORCA» wpisz:",
-            "account": "📌 W polu «NUMER RACHUNKU» wpisz:",
-            "amount": "📌 W polu «KWOTA» wpisz:",
-            "title": "📌 W polu «TYTUŁ PRZELEWU» wpisz:",
-            "details": "Szczegóły sprawy:",
-            "voivodeship": "Województwo:",
-            "office": "Urząd:",
-            "payment_type": "Rodzaj opłaty:",
-            "warning": "⚠️ Przed wykonaniem przelewu sprawdź dane na oficjalnej stronie urzędu.",
-            "verification_status": "Status weryfikacji:",
-            "source": "Źródło:",
-            "free_ready": "✅ Opłata nie jest wymagana",
-            "free_instruction": "Ta czynność jest bezpłatna.\nNie wykonuj przelewu.\nDane do opłaty nie są potrzebne.",
-        },
-        "en": {
-            "ready": "✅ Payment details are ready",
-            "instruction": "In your bank, choose a standard bank transfer.",
-            "recipient": "📌 In the «RECIPIENT / ODBIORCA» field enter:",
-            "account": "📌 In the «ACCOUNT NUMBER / NUMER RACHUNKU» field enter:",
-            "amount": "📌 In the «AMOUNT / KWOTA» field enter:",
-            "title": "📌 In the «TRANSFER TITLE / TYTUŁ PRZELEWU» field enter:",
-            "details": "Case details:",
-            "voivodeship": "Voivodeship:",
-            "office": "Office:",
-            "payment_type": "Payment type:",
-            "warning": "⚠️ Before paying, verify the details on the official office website.",
-            "verification_status": "Verification status:",
-            "source": "Source:",
-            "free_ready": "✅ No payment required",
-            "free_instruction": "This procedure is free of charge.\nDo not make a transfer.\nPayment details are not required.",
-        },
-        "es": {
-            "ready": "✅ Los datos de pago están listos",
-            "instruction": "En tu banco, elige una transferencia bancaria normal.",
-            "recipient": "📌 En el campo «DESTINATARIO / ODBIORCA» introduce:",
-            "account": "📌 En el campo «NÚMERO DE CUENTA / NUMER RACHUNKU» introduce:",
-            "amount": "📌 En el campo «IMPORTE / KWOTA» introduce:",
-            "title": "📌 En el campo «CONCEPTO / TYTUŁ PRZELEWU» introduce:",
-            "details": "Detalles del trámite:",
-            "voivodeship": "Voivodato:",
-            "office": "Oficina:",
-            "payment_type": "Tipo de pago:",
-            "warning": "⚠️ Antes de pagar, verifica los datos en la página oficial de la oficina.",
-            "verification_status": "Estado de verificación:",
-            "source": "Fuente:",
-            "free_ready": "✅ No se requiere pago",
-            "free_instruction": "Este trámite es gratuito.\nNo hagas la transferencia.\nNo se necesitan datos de pago.",
-        },
-        "ru": {
-            "ready": "✅ Данные для оплаты готовы",
-            "instruction": "В банке выберите обычный банковский перевод.",
-            "recipient": "📌 В поле «ПОЛУЧАТЕЛЬ / ODBIORCA» вставьте:",
-            "account": "📌 В поле «НОМЕР СЧЁТА / NUMER RACHUNKU» вставьте:",
-            "amount": "📌 В поле «СУММА / KWOTA» вставьте:",
-            "title": "📌 В поле «НАЗНАЧЕНИЕ ПЛАТЕЖА / TYTUŁ PRZELEWU» вставьте:",
-            "details": "Детали дела:",
-            "voivodeship": "Воеводство:",
-            "office": "Ужонд:",
-            "payment_type": "Тип оплаты:",
-            "warning": "⚠️ Перед оплатой проверьте реквизиты на официальной странице ужонда.",
-            "verification_status": "Статус проверки:",
-            "source": "Источник:",
-            "free_ready": "✅ Оплата не требуется",
-            "free_instruction": "Это действие бесплатно.\nНе выполняйте перевод.\nРеквизиты для оплаты не нужны.",
-        },
-    }
 
-    return texts.get(lang_code, texts["ua"]).get(key, key)
 def build_result(data):
     lang_code = data.get("lang", "ua")
     voivodeship = data["voivodeship"]
@@ -690,98 +549,91 @@ def build_result(data):
 
     if payment.get("free"):
         return f"""
-{result_text(lang_code, "free_ready")}
+{rt(lang_code, "free_ready")}
 
-{result_text(lang_code, "voivodeship")}
+{rt(lang_code, "voivodeship")}
 {voivodeship["name_pl"]}
 
-{result_text(lang_code, "payment_type")}
+{rt(lang_code, "payment_type")}
 {payment["label"]}
 
-{result_text(lang_code, "amount")}
+{rt(lang_code, "amount")}
 0 zł
 
-{result_text(lang_code, "free_instruction")}
+{rt(lang_code, "free_instruction")}
 """
 
     route = get_route(voivodeship["voivodeship_id"], payment["payment_type_id"])
-
     if not route:
         return f"""
-⚠️ Google Sheets: payment route not found.
+{rt(lang_code, "route_not_found")}
 
-Voivodeship:
+{rt(lang_code, "voivodeship")}
 {voivodeship["name_pl"]}
 
-Payment type:
+{rt(lang_code, "payment_type")}
 {payment["label"]}
 
 Payment type ID:
 {payment["payment_type_id"]}
-
-Add this payment_type_id in the payment_routes sheet.
 """
 
     account = get_account(route["account_id"])
-
     if not account:
-        return "⚠️ Google Sheets: account not found in the accounts sheet."
+        return rt(lang_code, "account_not_found")
 
-    title = payment["title"].format(
-        full_name=data.get("full_name", ""),
-        birth_date=data.get("birth_date", ""),
-        proxy_name=data.get("proxy_name", ""),
-    )
+    title = payment["title"].format(full_name=data.get("full_name", ""), birth_date=data.get("birth_date", ""), proxy_name=data.get("proxy_name", ""))
 
     return f"""
-{result_text(lang_code, "ready")}
+{rt(lang_code, "ready")}
 
-{result_text(lang_code, "instruction")}
+{rt(lang_code, "instruction")}
 
-{result_text(lang_code, "recipient")}
+{rt(lang_code, "recipient")}
 
 {account["recipient"]}
 
-{result_text(lang_code, "account")}
+{rt(lang_code, "account")}
 
 {account["bank_account"]}
 
-{result_text(lang_code, "amount")}
+{rt(lang_code, "amount")}
 
 {payment["amount"]} zł
 
-{result_text(lang_code, "title")}
+{rt(lang_code, "title")}
 
 {title}
 
 ━━━━━━━━━━━━━━
 
-{result_text(lang_code, "details")}
+{rt(lang_code, "details")}
 
-{result_text(lang_code, "voivodeship")}
+{rt(lang_code, "voivodeship")}
 {voivodeship["name_pl"]}
 
-{result_text(lang_code, "office")}
+{rt(lang_code, "office")}
 {voivodeship["office_name"]}
 
-{result_text(lang_code, "payment_type")}
+{rt(lang_code, "payment_type")}
 {payment["label"]}
 
-{result_text(lang_code, "verification_status")}
+{rt(lang_code, "verification_status")}
 {route.get("verification_status", "")}
 
-{result_text(lang_code, "source")}
+{rt(lang_code, "source")}
 {route.get("source_url", "")}
 
-{result_text(lang_code, "warning")}
+{rt(lang_code, "warning")}
 """
 
 
 def main():
+    if not BOT_TOKEN:
+        raise RuntimeError("BOT_TOKEN is missing")
     app = ApplicationBuilder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, message_handler))
-
     print("Bot works.")
     app.run_polling()
 
