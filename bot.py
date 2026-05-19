@@ -91,8 +91,9 @@ TEXTS = {
     },
     "en": {
         "choose_lang": "Choose language:",
-        "welcome": "Cześć 👋\nJestem wirtualnym asystentem MeGreat.\nWybierz, w czym mogę pomóc:",
-        "main": "MENU GŁÓWNE",
+        "welcome": "Hello 👋\nI am the MeGreat virtual assistant.\nChoose how I can help you:",
+        "main": "MAIN MENU",
+        "payments_button": "💳 I want to pay an official fee",
         "payments_button": "💳 Chcę opłacić opłatę skarbową",
         "choose_voivodeship": "Choose the voivodeship:",
         "what_payment": "What are you paying for?",
