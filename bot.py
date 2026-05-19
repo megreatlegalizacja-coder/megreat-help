@@ -594,51 +594,119 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text("/start")
 
+def result_text(lang_code, key):
+    texts = {
+        "ua": {
+            "ready": "✅ Дані для оплати готові",
+            "instruction": "Оберіть у своєму банку звичайний переказ на рахунок.",
+            "recipient": "📌 У полі «ОТРИМУВАЧ» / «ODBIORCA» встав:",
+            "account": "📌 У полі «НОМЕР РАХУНКУ» / «NUMER RACHUNKU» встав:",
+            "amount": "📌 У полі «СУМА ОПЛАТИ» / «KWOTA» встав:",
+            "title": "📌 У полі «ПРИЗНАЧЕННЯ ПЛАТЕЖУ» / «TYTUŁ PRZELEWU» встав:",
+            "details": "Деталі справи:",
+            "voivodeship": "Воєводство:",
+            "office": "Ужонд:",
+            "payment_type": "Тип оплати:",
+            "warning": "⚠️ Перед оплатою перевірте реквізити на офіційній сторінці ужонду.",
+        },
+        "pl": {
+            "ready": "✅ Dane do opłaty są gotowe",
+            "instruction": "W banku wybierz zwykły przelew na rachunek.",
+            "recipient": "📌 W polu «ODBIORCA» wpisz:",
+            "account": "📌 W polu «NUMER RACHUNKU» wpisz:",
+            "amount": "📌 W polu «KWOTA» wpisz:",
+            "title": "📌 W polu «TYTUŁ PRZELEWU» wpisz:",
+            "details": "Szczegóły sprawy:",
+            "voivodeship": "Województwo:",
+            "office": "Urząd:",
+            "payment_type": "Rodzaj opłaty:",
+            "warning": "⚠️ Przed wykonaniem przelewu sprawdź dane na oficjalnej stronie urzędu.",
+        },
+        "en": {
+            "ready": "✅ Payment details are ready",
+            "instruction": "In your bank, choose a standard bank transfer.",
+            "recipient": "📌 In the «RECIPIENT / ODBIORCA» field enter:",
+            "account": "📌 In the «ACCOUNT NUMBER / NUMER RACHUNKU» field enter:",
+            "amount": "📌 In the «AMOUNT / KWOTA» field enter:",
+            "title": "📌 In the «TRANSFER TITLE / TYTUŁ PRZELEWU» field enter:",
+            "details": "Case details:",
+            "voivodeship": "Voivodeship:",
+            "office": "Office:",
+            "payment_type": "Payment type:",
+            "warning": "⚠️ Before paying, verify the details on the official office website.",
+        },
+        "es": {
+            "ready": "✅ Los datos de pago están listos",
+            "instruction": "En tu banco, elige una transferencia bancaria normal.",
+            "recipient": "📌 En el campo «DESTINATARIO / ODBIORCA» introduce:",
+            "account": "📌 En el campo «NÚMERO DE CUENTA / NUMER RACHUNKU» introduce:",
+            "amount": "📌 En el campo «IMPORTE / KWOTA» introduce:",
+            "title": "📌 En el campo «CONCEPTO / TYTUŁ PRZELEWU» introduce:",
+            "details": "Detalles del trámite:",
+            "voivodeship": "Voivodato:",
+            "office": "Oficina:",
+            "payment_type": "Tipo de pago:",
+            "warning": "⚠️ Antes de pagar, verifica los datos en la página oficial de la oficina.",
+        },
+        "ru": {
+            "ready": "✅ Данные для оплаты готовы",
+            "instruction": "В банке выберите обычный банковский перевод.",
+            "recipient": "📌 В поле «ПОЛУЧАТЕЛЬ / ODBIORCA» вставьте:",
+            "account": "📌 В поле «НОМЕР СЧЁТА / NUMER RACHUNKU» вставьте:",
+            "amount": "📌 В поле «СУММА / KWOTA» вставьте:",
+            "title": "📌 В поле «НАЗНАЧЕНИЕ ПЛАТЕЖА / TYTUŁ PRZELEWU» вставьте:",
+            "details": "Детали дела:",
+            "voivodeship": "Воеводство:",
+            "office": "Ужонд:",
+            "payment_type": "Тип оплаты:",
+            "warning": "⚠️ Перед оплатой проверьте реквизиты на официальной странице ужонда.",
+        },
+    }
 
+    return texts.get(lang_code, texts["ua"]).get(key, key)
 def build_result(data):
+    lang_code = data.get("lang", "ua")
     voivodeship = data["voivodeship"]
     payment = data["selected_payment"]
 
     if payment.get("free"):
         return f"""
-✅ Оплата не потрібна
+{result_text(lang_code, "free_ready")}
 
-Воєводство:
+{result_text(lang_code, "voivodeship")}
 {voivodeship["name_pl"]}
 
-Тип справи:
+{result_text(lang_code, "payment_type")}
 {payment["label"]}
 
-📌 Сума оплати:
+{result_text(lang_code, "amount")}
 0 zł
 
-Ця дія є безкоштовною.
-Не виконуйте переказ.
-Реквізити для оплати не потрібні.
+{result_text(lang_code, "free_instruction")}
 """
 
     route = get_route(voivodeship["voivodeship_id"], payment["payment_type_id"])
 
     if not route:
         return f"""
-⚠️ У Google Sheets немає маршруту оплати.
+⚠️ Google Sheets: payment route not found.
 
-Воєводство:
+Voivodeship:
 {voivodeship["name_pl"]}
 
-Тип оплати:
+Payment type:
 {payment["label"]}
 
 Payment type ID:
 {payment["payment_type_id"]}
 
-Додай цей payment_type_id у вкладку payment_routes.
+Add this payment_type_id in the payment_routes sheet.
 """
 
     account = get_account(route["account_id"])
 
     if not account:
-        return "⚠️ Не знайдено рахунок у вкладці accounts."
+        return "⚠️ Google Sheets: account not found in the accounts sheet."
 
     title = payment["title"].format(
         full_name=data.get("full_name", ""),
@@ -647,46 +715,46 @@ Payment type ID:
     )
 
     return f"""
-✅ Дані для оплати готові
+{result_text(lang_code, "ready")}
 
-Оберіть у своєму банку звичайний переказ на рахунок.
+{result_text(lang_code, "instruction")}
 
-📌 У полі «ОТРИМУВАЧ» / «ODBIORCA» встав:
+{result_text(lang_code, "recipient")}
 
 {account["recipient"]}
 
-📌 У полі «НОМЕР РАХУНКУ» / «NUMER RACHUNKU» встав:
+{result_text(lang_code, "account")}
 
 {account["bank_account"]}
 
-📌 У полі «СУМА ОПЛАТИ» / «KWOTA» встав:
+{result_text(lang_code, "amount")}
 
 {payment["amount"]} zł
 
-📌 У полі «ПРИЗНАЧЕННЯ ПЛАТЕЖУ» / «TYTUŁ PRZELEWU» встав:
+{result_text(lang_code, "title")}
 
 {title}
 
 ━━━━━━━━━━━━━━
 
-Деталі справи:
+{result_text(lang_code, "details")}
 
-Воєводство:
+{result_text(lang_code, "voivodeship")}
 {voivodeship["name_pl"]}
 
-Ужонд:
+{result_text(lang_code, "office")}
 {voivodeship["office_name"]}
 
-Тип оплати:
+{result_text(lang_code, "payment_type")}
 {payment["label"]}
 
-Статус перевірки:
+{result_text(lang_code, "verification_status")}
 {route.get("verification_status", "")}
 
-Джерело:
+{result_text(lang_code, "source")}
 {route.get("source_url", "")}
 
-⚠️ Перед оплатою перевірте реквізити на офіційній сторінці ужонду.
+{result_text(lang_code, "warning")}
 """
 
 
