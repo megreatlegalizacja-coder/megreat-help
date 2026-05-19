@@ -94,7 +94,6 @@ TEXTS = {
         "welcome": "Hello 👋\nI am the MeGreat virtual assistant.\nChoose how I can help you:",
         "main": "MAIN MENU",
         "payments_button": "💳 I want to pay an official fee",
-        "payments_button": "💳 Chcę opłacić opłatę skarbową",
         "choose_voivodeship": "Choose the voivodeship:",
         "what_payment": "What are you paying for?",
         "temporary": "Temporary residence",
@@ -349,7 +348,7 @@ def validate_birth_date(date_text):
 
 def get_voivodeship(name):
     db = load_database()
-    rows = DB["voivodeships"][DB["voivodeships"]["name_pl"].astype(str).str.strip() == name.strip()]
+    rows = db["voivodeships"][db["voivodeships"]["name_pl"].astype(str).str.strip() == name.strip()]
     if rows.empty:
         return None
     return rows.iloc[0].to_dict()
@@ -357,7 +356,7 @@ def get_voivodeship(name):
 
 def get_route(voivodeship_id, payment_type_id):
     db = load_database()
-    routes = DB["routes"]
+    routes = db["routes"]
     rows = routes[
         (routes["voivodeship_id"].astype(str).str.strip() == str(voivodeship_id).strip())
         & (routes["payment_type_id"].astype(str).str.strip() == str(payment_type_id).strip())
@@ -369,11 +368,10 @@ def get_route(voivodeship_id, payment_type_id):
 
 def get_account(account_id):
     db = load_database()
-    rows = DB["accounts"][DB["accounts"]["account_id"].astype(str).str.strip() == str(account_id).strip()]
+    rows = db["accounts"][db["accounts"]["account_id"].astype(str).str.strip() == str(account_id).strip()]
     if rows.empty:
         return None
     return rows.iloc[0].to_dict()
-
 
 def key_for_text(context, text, keys):
     for key in keys:
@@ -609,6 +607,10 @@ def result_text(lang_code, key):
             "office": "Ужонд:",
             "payment_type": "Тип оплати:",
             "warning": "⚠️ Перед оплатою перевірте реквізити на офіційній сторінці ужонду.",
+            "verification_status": "Статус перевірки:",
+            "source": "Джерело:",
+            "free_ready": "✅ Оплата не потрібна",
+            "free_instruction": "Ця дія є безкоштовною.\nНе виконуйте переказ.\nРеквізити для оплати не потрібні.",
         },
         "pl": {
             "ready": "✅ Dane do opłaty są gotowe",
@@ -622,6 +624,10 @@ def result_text(lang_code, key):
             "office": "Urząd:",
             "payment_type": "Rodzaj opłaty:",
             "warning": "⚠️ Przed wykonaniem przelewu sprawdź dane na oficjalnej stronie urzędu.",
+            "verification_status": "Status weryfikacji:",
+            "source": "Źródło:",
+            "free_ready": "✅ Opłata nie jest wymagana",
+            "free_instruction": "Ta czynność jest bezpłatna.\nNie wykonuj przelewu.\nDane do opłaty nie są potrzebne.",
         },
         "en": {
             "ready": "✅ Payment details are ready",
@@ -635,6 +641,10 @@ def result_text(lang_code, key):
             "office": "Office:",
             "payment_type": "Payment type:",
             "warning": "⚠️ Before paying, verify the details on the official office website.",
+            "verification_status": "Verification status:",
+            "source": "Source:",
+            "free_ready": "✅ No payment required",
+            "free_instruction": "This procedure is free of charge.\nDo not make a transfer.\nPayment details are not required.",
         },
         "es": {
             "ready": "✅ Los datos de pago están listos",
@@ -648,6 +658,10 @@ def result_text(lang_code, key):
             "office": "Oficina:",
             "payment_type": "Tipo de pago:",
             "warning": "⚠️ Antes de pagar, verifica los datos en la página oficial de la oficina.",
+            "verification_status": "Estado de verificación:",
+            "source": "Fuente:",
+            "free_ready": "✅ No se requiere pago",
+            "free_instruction": "Este trámite es gratuito.\nNo hagas la transferencia.\nNo se necesitan datos de pago.",
         },
         "ru": {
             "ready": "✅ Данные для оплаты готовы",
@@ -661,6 +675,10 @@ def result_text(lang_code, key):
             "office": "Ужонд:",
             "payment_type": "Тип оплаты:",
             "warning": "⚠️ Перед оплатой проверьте реквизиты на официальной странице ужонда.",
+            "verification_status": "Статус проверки:",
+            "source": "Источник:",
+            "free_ready": "✅ Оплата не требуется",
+            "free_instruction": "Это действие бесплатно.\nНе выполняйте перевод.\nРеквизиты для оплаты не нужны.",
         },
     }
 
