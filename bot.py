@@ -27,6 +27,7 @@ TEXTS = {
     "ua": {
         "welcome": "Привіт 👋\nЯ віртуальний помічник MeGreat.\nОберіть, з чим Вам допомогти:",
         "payments_button": "💳 Хочу оплатити оплату скарбову",
+        "admin_button": "👩‍💼 Контакт з адміном",
         "choose_voivodeship": "Оберіть воєводство:",
         "what_payment": "За що платимо?",
         "temporary": "Тимчасове перебування",
@@ -58,6 +59,7 @@ TEXTS = {
     "pl": {
         "welcome": "Cześć 👋\nJestem wirtualnym asystentem MeGreat.\nWybierz, w czym mogę pomóc:",
         "payments_button": "💳 Chcę opłacić opłatę skarbową",
+        "admin_button": "👩‍💼 Kontakt z administratorem",
         "choose_voivodeship": "Wybierz województwo:",
         "what_payment": "Za co chcesz zapłacić?",
         "temporary": "Pobyt czasowy",
@@ -89,6 +91,7 @@ TEXTS = {
     "en": {
         "welcome": "Hello 👋\nI am the MeGreat virtual assistant.\nChoose how I can help you:",
         "payments_button": "💳 I want to pay an official fee",
+        "admin_button": "👩‍💼 Contact admin",
         "choose_voivodeship": "Choose the voivodeship:",
         "what_payment": "What are you paying for?",
         "temporary": "Temporary residence",
@@ -120,6 +123,7 @@ TEXTS = {
     "es": {
         "welcome": "Hola 👋\nSoy el asistente virtual de MeGreat.\nElige cómo puedo ayudarte:",
         "payments_button": "💳 Quiero pagar una tasa oficial",
+        "admin_button": "👩‍💼 Contactar administrador",
         "choose_voivodeship": "Elige el voivodato:",
         "what_payment": "¿Por qué quieres pagar?",
         "temporary": "Residencia temporal",
@@ -151,6 +155,7 @@ TEXTS = {
     "ru": {
         "welcome": "Привет 👋\nЯ виртуальный помощник MeGreat.\nВыберите, с чем Вам помочь:",
         "payments_button": "💳 Хочу оплатить гербовый сбор",
+        "admin_button": "👩‍💼 Связь с администратором",
         "choose_voivodeship": "Выберите воеводство:",
         "what_payment": "За что платим?",
         "temporary": "Временное пребывание",
@@ -334,8 +339,14 @@ def keyboard_with_restart(context, items, row_size=2):
 
 
 def main_menu_keyboard(context):
-    return ReplyKeyboardMarkup([[t(context, "payments_button")], [ct(context, "main_button")]], resize_keyboard=True)
-
+    return ReplyKeyboardMarkup(
+        [
+            [t(context, "payments_button")],
+            [ct(context, "main_button")],
+            [t(context, "admin_button")],
+        ],
+        resize_keyboard=True,
+    )
 
 def is_latin_name(name):
     return re.fullmatch(r"^[A-Za-zÀ-ÿ' -]+$", name.strip()) is not None
@@ -409,7 +420,13 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
         context.user_data["lang"] = LANG_BUTTONS[text]
         return await show_main_menu(update, context)
+    if text == t(context, "admin_button"):
+        context.user_data["step"] = "contact_admin"
+        await update.message.reply_text(
+            "✍️ Напишіть повідомлення адміністратору."
+        )
 
+    return
     if text == ct(context, "back"):
         return await show_main_menu(update, context)
 
@@ -539,17 +556,50 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(result)
         return
 
-    if step == "proxy_name":
-        if not is_latin_name(text):
-            await update.message.reply_text(t(context, "invalid_name"))
-            return
-        context.user_data["proxy_name"] = text.upper()
-        result = build_result(context.user_data)
-        context.user_data.clear()
-        await update.message.reply_text(result)
-        return
+        if step == "proxy_name":
+            if not is_latin_name(text):
+                await update.message.reply_text(t(context, "invalid_name"))
+                return
 
-    await update.message.reply_text("/start")
+            context.user_data["proxy_name"] = text.upper()
+            
+            result = build_result(context.user_data)
+            context.user_data.clear()
+
+            await update.message.reply_text(result)
+            return
+
+        if step == "contact_admin":
+            user = update.effective_user
+
+            admin_message = f"""
+    📩 НОВЕ ЗВЕРНЕННЯ
+
+    👤 Користувач:
+    {user.full_name}
+
+    🆔 User ID:
+    {user.id}
+
+    🌐 Мова:
+    {lang(context)}
+
+    💬 Повідомлення:
+    {text}
+    """
+
+            await context.bot.send_message(
+                chat_id=ADMIN_CHAT_ID,
+                text=admin_message,
+            )
+
+            await update.message.reply_text(
+                "✅ Ваше повідомлення надіслано адміністратору."
+            )
+
+            return
+
+        await update.message.reply_text("/start")
 
 
 def build_result(data):
