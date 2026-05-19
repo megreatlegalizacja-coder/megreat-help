@@ -11,6 +11,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, Con
 
 load_dotenv()
 
+ADMIN_CHAT_ID = int(os.getenv("ADMIN_CHAT_ID"))
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 SHEET_URL = os.getenv("SHEET_URL")
 
