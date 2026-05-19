@@ -412,7 +412,7 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
-    if text == t(context, "main"):
+    if text == t(context, "payments_button"):
         context.user_data["step"] = "voivodeship"
         names = DB["voivodeships"]["name_pl"].astype(str).tolist()
 
