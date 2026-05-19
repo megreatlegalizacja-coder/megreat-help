@@ -347,6 +347,7 @@ def validate_birth_date(date_text):
 
 
 def get_voivodeship(name):
+    db = load_database()
     rows = DB["voivodeships"][DB["voivodeships"]["name_pl"].astype(str).str.strip() == name.strip()]
     if rows.empty:
         return None
@@ -354,6 +355,7 @@ def get_voivodeship(name):
 
 
 def get_route(voivodeship_id, payment_type_id):
+    db = load_database()
     routes = DB["routes"]
     rows = routes[
         (routes["voivodeship_id"].astype(str).str.strip() == str(voivodeship_id).strip())
@@ -365,6 +367,7 @@ def get_route(voivodeship_id, payment_type_id):
 
 
 def get_account(account_id):
+    db = load_database()
     rows = DB["accounts"][DB["accounts"]["account_id"].astype(str).str.strip() == str(account_id).strip()]
     if rows.empty:
         return None
