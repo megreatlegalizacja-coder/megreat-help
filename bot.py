@@ -408,6 +408,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    if update.effective_chat.type != "private":
+        return
+
     text = update.message.text.strip()
     step = context.user_data.get("step")
 
