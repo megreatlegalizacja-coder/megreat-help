@@ -409,11 +409,16 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-    if update.effective_chat.type != "private":
+    if update.effective_chat.id != ADMIN_CHAT_ID:
         return
 
-    text = update.message.text.strip()
-    step = context.user_data.get("step")
+    if not update.message.reply_to_message:
+        return
+
+    original_text = update.message.reply_to_message.text or ""
+    admin_reply = update.message.text
+
+    match = re.search(r"User ID:\s*\n?(\d+)", original_text)
 
     if text in [TEXTS[code]["restart"] for code in TEXTS]:
         return await start(update, context)
