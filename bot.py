@@ -418,76 +418,177 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if text not in LANG_BUTTONS:
             await update.message.reply_text("Оберіть мову з кнопок.")
             return
+
         context.user_data["lang"] = LANG_BUTTONS[text]
         return await show_main_menu(update, context)
+
     if text == t(context, "admin_button"):
         context.user_data["step"] = "contact_admin"
-        await update.message.reply_text(
-            "✍️ Напишіть повідомлення адміністратору."
+        await update.message.reply_text("✍️ Напишіть повідомлення адміністратору.")
+        return
+
+    if step == "contact_admin":
+        user = update.effective_user
+
+        admin_message = f"""
+📩 НОВЕ ЗВЕРНЕННЯ
+
+👤 Користувач:
+{user.full_name}
+
+🆔 User ID:
+{user.id}
+
+🌐 Мова:
+{lang(context)}
+
+💬 Повідомлення:
+{text}
+"""
+
+        print(f"SENDING ADMIN MESSAGE TO: {ADMIN_CHAT_ID}")
+        print(admin_message)
+
+        await context.bot.send_message(
+            chat_id=ADMIN_CHAT_ID,
+            text=admin_message,
         )
 
-    return
+        context.user_data["step"] = "main_menu"
+
+        await update.message.reply_text(
+            "✅ Ваше повідомлення надіслано адміністратору.",
+            reply_markup=main_menu_keyboard(context),
+        )
+        return
+
     if text == ct(context, "back"):
         return await show_main_menu(update, context)
 
     if text == ct(context, "main_button"):
         context.user_data["step"] = "cukr_menu"
-        await update.message.reply_text(ct(context, "menu_title"), reply_markup=ReplyKeyboardMarkup([[ct(context, "about")], [ct(context, "instruction")], [ct(context, "back")]], resize_keyboard=True))
+
+        await update.message.reply_text(
+            ct(context, "menu_title"),
+            reply_markup=ReplyKeyboardMarkup(
+                [
+                    [ct(context, "about")],
+                    [ct(context, "instruction")],
+                    [ct(context, "back")],
+                ],
+                resize_keyboard=True,
+            ),
+        )
         return
 
     if step == "cukr_menu":
         if text == ct(context, "about"):
             await update.message.reply_text(ct(context, "about_text"))
             return
+
         if text == ct(context, "instruction"):
             await update.message.reply_text(ct(context, "instruction_text"))
             return
+
         await update.message.reply_text(t(context, "choose_button"))
         return
 
     if text == t(context, "payments_button"):
         context.user_data["step"] = "voivodeship"
         names = DB["voivodeships"]["name_pl"].astype(str).tolist()
-        await update.message.reply_text(t(context, "choose_voivodeship"), reply_markup=keyboard_with_restart(context, names, 2))
+
+        await update.message.reply_text(
+            t(context, "choose_voivodeship"),
+            reply_markup=keyboard_with_restart(context, names, 2),
+        )
         return
 
     if step == "voivodeship":
         voivodeship = get_voivodeship(text)
+
         if not voivodeship:
             await update.message.reply_text(t(context, "choose_button"))
             return
+
         context.user_data["voivodeship"] = voivodeship
         context.user_data["step"] = "main_payment_category"
-        await update.message.reply_text(t(context, "what_payment"), reply_markup=keyboard_with_restart(context, [t(context, "temporary"), t(context, "permanent"), t(context, "resident"), t(context, "citizenship"), t(context, "card_print"), t(context, "proxy")], 1))
+
+        await update.message.reply_text(
+            t(context, "what_payment"),
+            reply_markup=keyboard_with_restart(
+                context,
+                [
+                    t(context, "temporary"),
+                    t(context, "permanent"),
+                    t(context, "resident"),
+                    t(context, "citizenship"),
+                    t(context, "card_print"),
+                    t(context, "proxy"),
+                ],
+                1,
+            ),
+        )
         return
 
     if step == "main_payment_category":
-        category = key_for_text(context, text, ["temporary", "permanent", "resident", "citizenship", "card_print", "proxy"])
+        category = key_for_text(
+            context,
+            text,
+            ["temporary", "permanent", "resident", "citizenship", "card_print", "proxy"],
+        )
+
         if category == "temporary":
             context.user_data["step"] = "temporary_work"
-            await update.message.reply_text(t(context, "work_question"), reply_markup=keyboard_with_restart(context, [t(context, "yes_work"), t(context, "no_work")], 1))
+            await update.message.reply_text(
+                t(context, "work_question"),
+                reply_markup=keyboard_with_restart(
+                    context,
+                    [t(context, "yes_work"), t(context, "no_work")],
+                    1,
+                ),
+            )
             return
+
         if category == "permanent":
             context.user_data["step"] = "permanent_basis"
-            await update.message.reply_text(t(context, "basis_question"), reply_markup=keyboard_with_restart(context, [t(context, "karta_polaka"), t(context, "no_karta_polaka")], 1))
+            await update.message.reply_text(
+                t(context, "basis_question"),
+                reply_markup=keyboard_with_restart(
+                    context,
+                    [t(context, "karta_polaka"), t(context, "no_karta_polaka")],
+                    1,
+                ),
+            )
             return
+
         if category == "card_print":
             context.user_data["step"] = "card_type"
-            await update.message.reply_text(t(context, "card_type"), reply_markup=keyboard_with_restart(context, [t(context, "cukr"), t(context, "traditional_card")], 1))
+            await update.message.reply_text(
+                t(context, "card_type"),
+                reply_markup=keyboard_with_restart(
+                    context,
+                    [t(context, "cukr"), t(context, "traditional_card")],
+                    1,
+                ),
+            )
             return
+
         if category in ["resident", "citizenship", "proxy"]:
             context.user_data["selected_payment"] = FINAL_PAYMENTS[category]
             context.user_data["step"] = "full_name"
             await update.message.reply_text(t(context, "enter_name"))
             return
+
         await update.message.reply_text(t(context, "choose_button"))
         return
 
     if step == "temporary_work":
         selected_key = key_for_text(context, text, ["yes_work", "no_work"])
+
         if not selected_key:
             await update.message.reply_text(t(context, "choose_button"))
             return
+
         context.user_data["selected_payment"] = FINAL_PAYMENTS[selected_key]
         context.user_data["step"] = "full_name"
         await update.message.reply_text(t(context, "enter_name"))
@@ -495,38 +596,54 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if step == "permanent_basis":
         selected_key = key_for_text(context, text, ["karta_polaka", "no_karta_polaka"])
+
         if not selected_key:
             await update.message.reply_text(t(context, "choose_button"))
             return
+
         context.user_data["selected_payment"] = FINAL_PAYMENTS[selected_key]
+
         if FINAL_PAYMENTS[selected_key].get("free"):
             result = build_result(context.user_data)
             context.user_data.clear()
             await update.message.reply_text(result)
             return
+
         context.user_data["step"] = "full_name"
         await update.message.reply_text(t(context, "enter_name"))
         return
 
     if step == "card_type":
         selected_key = key_for_text(context, text, ["cukr", "traditional_card"])
+
         if selected_key == "cukr":
             context.user_data["selected_payment"] = FINAL_PAYMENTS["cukr"]
             context.user_data["step"] = "full_name"
             await update.message.reply_text(t(context, "enter_name"))
             return
+
         if selected_key == "traditional_card":
             context.user_data["step"] = "traditional_card_discount"
-            await update.message.reply_text(t(context, "discount_question"), reply_markup=keyboard_with_restart(context, [t(context, "adult_no_discount"), t(context, "discount")], 1))
+            await update.message.reply_text(
+                t(context, "discount_question"),
+                reply_markup=keyboard_with_restart(
+                    context,
+                    [t(context, "adult_no_discount"), t(context, "discount")],
+                    1,
+                ),
+            )
             return
+
         await update.message.reply_text(t(context, "choose_button"))
         return
 
     if step == "traditional_card_discount":
         selected_key = key_for_text(context, text, ["adult_no_discount", "discount"])
+
         if not selected_key:
             await update.message.reply_text(t(context, "choose_button"))
             return
+
         context.user_data["selected_payment"] = FINAL_PAYMENTS[selected_key]
         context.user_data["step"] = "full_name"
         await update.message.reply_text(t(context, "enter_name"))
@@ -536,8 +653,10 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if not is_latin_name(text):
             await update.message.reply_text(t(context, "invalid_name"))
             return
+
         context.user_data["full_name"] = text.upper()
         context.user_data["step"] = "birth_date"
+
         await update.message.reply_text(t(context, "enter_birth"))
         return
 
@@ -545,64 +664,34 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if not validate_birth_date(text):
             await update.message.reply_text(t(context, "invalid_date"))
             return
+
         context.user_data["birth_date"] = text
         selected = context.user_data["selected_payment"]
+
         if selected.get("needs_proxy"):
             context.user_data["step"] = "proxy_name"
             await update.message.reply_text(t(context, "enter_proxy"))
             return
+
         result = build_result(context.user_data)
         context.user_data.clear()
         await update.message.reply_text(result)
         return
 
-        if step == "proxy_name":
-            if not is_latin_name(text):
-                await update.message.reply_text(t(context, "invalid_name"))
-                return
-
-            context.user_data["proxy_name"] = text.upper()
-            
-            result = build_result(context.user_data)
-            context.user_data.clear()
-
-            await update.message.reply_text(result)
+    if step == "proxy_name":
+        if not is_latin_name(text):
+            await update.message.reply_text(t(context, "invalid_name"))
             return
 
-        if step == "contact_admin":
-            user = update.effective_user
+        context.user_data["proxy_name"] = text.upper()
 
-            admin_message = f"""
-    📩 НОВЕ ЗВЕРНЕННЯ
+        result = build_result(context.user_data)
+        context.user_data.clear()
 
-    👤 Користувач:
-    {user.full_name}
+        await update.message.reply_text(result)
+        return
 
-    🆔 User ID:
-    {user.id}
-
-    🌐 Мова:
-    {lang(context)}
-
-    💬 Повідомлення:
-    {text}
-    """
-            print(f"SENDING ADMIN MESSAGE TO: {ADMIN_CHAT_ID}")
-            print(admin_message)
-            
-            await context.bot.send_message(
-                chat_id=ADMIN_CHAT_ID,
-                text=admin_message,
-            )
-
-            await update.message.reply_text(
-                "✅ Ваше повідомлення надіслано адміністратору."
-            )
-
-            return
-
-        await update.message.reply_text("/start")
-
+    await update.message.reply_text("/start")
 
 def build_result(data):
     lang_code = data.get("lang", "ua")
