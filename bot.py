@@ -44,7 +44,7 @@ TEXTS = {
         "no_karta_polaka": "Без карти Поляка",
         "card_type": "Оберіть тип карти:",
         "cukr": "Карта CUKR",
-        "traditional_card": "Karta Pobytu tradycyjna (Nie CUKR)",
+        "traditional_card": "Звичайна Карта Побиту (не CUKR)",
         "discount_question": "Оберіть варіант:",
         "adult_no_discount": "Повнолітня особа без пільг",
         "discount": "Пільгова оплата",
