@@ -409,16 +409,32 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-    if update.effective_chat.id != ADMIN_CHAT_ID:
+    text = update.message.text.strip()
+    step = context.user_data.get("step")
+
+    # ADMIN GROUP REPLIES
+    if update.effective_chat.id == ADMIN_CHAT_ID:
+
+        if not update.message.reply_to_message:
+            return
+
+        original_text = update.message.reply_to_message.text or ""
+        admin_reply = update.message.text
+
+        match = re.search(r"User ID:\s*\n?(\d+)", original_text)
+
+        if not match:
+            return
+
+        user_id = int(match.group(1))
+
+        await context.bot.send_message(
+            chat_id=user_id,
+            text=f"👩‍💼 Відповідь адміністратора:\n\n{admin_reply}"
+        )
+
+        await update.message.reply_text("✅ Відповідь надіслано користувачу.")
         return
-
-    if not update.message.reply_to_message:
-        return
-
-    original_text = update.message.reply_to_message.text or ""
-    admin_reply = update.message.text
-
-    match = re.search(r"User ID:\s*\n?(\d+)", original_text)
 
     if text in [TEXTS[code]["restart"] for code in TEXTS]:
         return await start(update, context)
